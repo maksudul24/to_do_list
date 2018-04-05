@@ -37,3 +37,17 @@ int main(void)
     }
     return 0;
 }
+void update(void)            //function for updating task list
+{
+    tasks temp;
+    char date[100];
+    while(1){
+        scanf("%s",&date);        //taking task date input
+        if(date[0] == 'G')break;
+        sscanf(date,"%lld%*c%lld%*c%lld",&temp.day,&temp.month,&temp.year);
+        getchar();
+        gets(temp.description);     //taking task information
+        lists.push_back(temp);
+    }
+    return;
+}
