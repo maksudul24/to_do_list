@@ -29,3 +29,17 @@ int main()
     else if(command==2) output();
     return 0;
 }
+void time()
+{
+    int length,ind;
+    time_t get_date;
+    struct tm *temp;
+    time(&get_date);
+    temp=localtime(&get_date);
+
+    strftime(File_name,11,"%x",temp);
+    length=strlen(File_name);
+    for(ind=0;ind<length;ind++){
+        if(File_name[ind]=='/') File_name[ind]=' ';
+    }
+}
