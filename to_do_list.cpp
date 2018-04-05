@@ -1,57 +1,39 @@
-#include<iostream>
-#include<fstream>
-#include<time.h>
-#include<string.h>
-char data[60000];
-char File_name[12];
-char next_line='\n';
-void get_data();
-void time();
-void write_data();
-void output();
-void date_input();
-int main()
+#include <bits/stdc++.h>
+#define ll long long
+#define c1(X) cout<<X<<endl;
+using namespace std;
+struct tasks{             //structure for holding task information
+    ll day,month,year;
+    char description[100];
+};
+void update();
+void display();
+vector <tasks> lists;
+int main(void)
 {
-    using namespace std;
-
-    char work[6000];
-    int i,length,command;
-    cin>>command;
-    if(command==1){
-        gets(work);
-    	get_data();
-    	strcat(data,work);
-    	length=strlen(data);
-    	data[length]='\n';
-    	write_data();
-    	getchar();
+    char name[100],action,date[100];
+    ll day,month,year,k;
+    tasks temp;
+    printf("Enter your name:\n");
+    gets(name);
+    printf("\n\nWELCOME %s !!\nWhat do you want to do now?\n\n\n",name);
+    printf("Enter U for organizing your ToDo list,Q for accessing your ToDo list,R for reset,& G for exit\n\n\n");
+    while(1){
+        printf("Enter action\n\n");
+        scanf(" %c",&action);        //input for query,i.e updating list,viewing list,reset,and exit
+        if(action == 'E'){
+            printf("Take Care!!\n");
+            break;
+        }
+        if(action == 'U'){
+            printf("Enter task date in dd.mm.yy format or press 'G' to exit\n");
+            update();
+        }
+        else if(action == 'Q')display();
+        else{
+            printf("Your ToDo list is cleared!!\n");
+            lists.clear();
+        }
     }
-    else if(command==2) output();
     return 0;
-}
-void time()
-{
-    int length,ind;
-    time_t get_date;
-    struct tm *temp;
-    time(&get_date);
-    temp=localtime(&get_date);
-
-    strftime(File_name,11,"%x",temp);
-    length=strlen(File_name);
-    for(ind=0;ind<length;ind++){
-        if(File_name[ind]=='/') File_name[ind]=' ';
-    }
-}
-void get_data()
-{
-    time();
-    ifstream print(File_name,ios::in |ios::binary);
-    if(!print){
-        cout<<"Data is not present\n";
-        date_input();
-        return;
-    }
-    print.read((char *) &data,sizeof(data));
-    print.close();
 }
