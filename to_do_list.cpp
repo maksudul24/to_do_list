@@ -43,3 +43,15 @@ void time()
         if(File_name[ind]=='/') File_name[ind]=' ';
     }
 }
+void get_data()
+{
+    time();
+    ifstream print(File_name,ios::in |ios::binary);
+    if(!print){
+        cout<<"Data is not present\n";
+        date_input();
+        return;
+    }
+    print.read((char *) &data,sizeof(data));
+    print.close();
+}
