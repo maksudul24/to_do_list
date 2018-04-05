@@ -51,3 +51,14 @@ void update(void)            //function for updating task list
     }
     return;
 }
+void display(void)            //function for displaying the task list
+{
+    sort(lists.begin(),lists.end());
+    if(lists.empty())printf("List is empty\n");
+    else{
+        for(int i = 0 ; i < lists.size() ; i++){
+            printf("%lld.%lld.%lld   %s\n\n\n",lists[i].day,lists[i].month,lists[i].year,lists[i].description);
+        }
+    }
+    return;
+}
